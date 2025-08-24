@@ -22,14 +22,15 @@ export default function Home() {
           </p>
           <div className="flex gap-4 justify-center">
             <Button asChild size="lg">
-              <Link href="/auth/signup">Get Started</Link>
+              <Link href="/signup">Get Started</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/auth/login">Sign In</Link>
+              <Link href="/login">Sign In</Link>
             </Button>
           </div>
         </div>
 
+        {/* Feature cards remain the same */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <Card className="bg-slate-800/50 border-slate-700">
             <CardHeader>
