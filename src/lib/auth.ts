@@ -1,5 +1,4 @@
 import { betterAuth } from "better-auth"
-import { supabaseAdapter } from "better-auth/adapters/supabase"
 
 export const auth = betterAuth({
   database: supabaseAdapter({
