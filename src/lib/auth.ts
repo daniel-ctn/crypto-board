@@ -1,10 +1,7 @@
 import { betterAuth } from "better-auth"
 
 export const auth = betterAuth({
-  database: supabaseAdapter({
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    secretKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  }),
+  database: process.env.DATABASE_URL!,
   emailAndPassword: {
     enabled: true,
   },
@@ -23,10 +20,10 @@ export const auth = betterAuth({
   callbacks: {
     after: [
       {
-        matcher(context) {
+        matcher(context: { type: string }) {
           return context.type === "credential.signUp"
         },
-        handler: async (ctx) => {
+        handler: async (ctx: { context: { user?: { id: string; email?: string; name?: string; image?: string } } }) => {
           // Create profile after user signup
           const { user } = ctx.context
           if (user) {

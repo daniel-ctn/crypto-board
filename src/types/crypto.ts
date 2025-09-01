@@ -66,3 +66,42 @@ export interface Transaction {
   transaction_date: string
   notes?: string
 }
+
+export interface MarketFilters {
+  category?: string
+  priceRange?: {
+    min: number
+    max: number
+  }
+  marketCapRange?: {
+    min: number
+    max: number
+  }
+  volumeRange?: {
+    min: number
+    max: number
+  }
+  priceChangeFilter?: 'gainers' | 'losers' | 'all'
+  sortBy?: 'market_cap' | 'price' | 'volume' | 'price_change_24h'
+  sortOrder?: 'asc' | 'desc'
+}
+
+export interface MarketStats {
+  totalCoins: number
+  totalMarketCap: number
+  totalVolume: number
+  dominance: {
+    btc: number
+    eth: number
+  }
+  marketCapChange24h: number
+}
+
+export interface CoinCategory {
+  id: string
+  name: string
+  market_cap: number
+  market_cap_change_24h: number
+  volume_24h: number
+  updated_at: string
+}

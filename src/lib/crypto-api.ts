@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
-import type { CryptoCoin } from '@/types/crypto'
+import { useQuery,useInfiniteQuery } from '@tanstack/react-query'
+import type { CryptoCoin, MarketStats, CoinCategory } from '@/types/crypto'
 
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3'
 
@@ -61,5 +61,120 @@ export const useSearchCoins = (query: string) => {
       return data.coins?.slice(0, 10) || []
     },
     enabled: !!query && query.length >= 2,
+  })
+}
+
+// Enhanced market data with pagination
+export const useCryptoMarketDataPaginated = (
+  page: number = 1,
+  perPage: number = 50,
+  category?: string,
+  sortBy?: string,
+  sortOrder?: string
+) => {
+  return useQuery({
+    queryKey: ['crypto-market-paginated', page, perPage, category, sortBy, sortOrder],
+    queryFn: async (): Promise<CryptoCoin[]> => {
+      let url = `${COINGECKO_API_BASE}/coins/markets?vs_currency=usd&order=${sortBy || 'market_cap_desc'}&per_page=${perPage}&page=${page}&sparkline=true&price_change_percentage=1h,24h,7d,30d`
+
+      if (category) {
+        url += `&category=${category}`
+      }
+
+      const response = await fetch(url)
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch crypto market data')
+      }
+
+      return response.json()
+    },
+    refetchInterval: 30000,
+    staleTime: 10000,
+  })
+}
+
+// Global market stats
+export const useGlobalMarketStats = () => {
+  return useQuery({
+    queryKey: ['global-market-stats'],
+    queryFn: async (): Promise<MarketStats> => {
+      const response = await fetch(`${COINGECKO_API_BASE}/global`)
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch global market data')
+      }
+
+      const data = await response.json()
+      const globalData = data.data
+
+      return {
+        totalCoins: globalData.active_cryptocurrencies,
+        totalMarketCap: globalData.total_market_cap.usd,
+        totalVolume: globalData.total_volume.usd,
+        dominance: {
+          btc: globalData.market_cap_percentage.btc,
+          eth: globalData.market_cap_percentage.eth,
+        },
+        marketCapChange24h: globalData.market_cap_change_percentage_24h_usd,
+      }
+    },
+    refetchInterval: 60000,
+    staleTime: 30000,
+  })
+}
+
+// Categories
+export const useCryptoCategories = () => {
+  return useQuery({
+    queryKey: ['crypto-categories'],
+    queryFn: async (): Promise<CoinCategory[]> => {
+      const response = await fetch(`${COINGECKO_API_BASE}/coins/categories`)
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch crypto categories')
+      }
+
+      return response.json()
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  })
+}
+
+// Enhanced coin details
+export const useCoinDetails = (coinId: string) => {
+  return useQuery({
+    queryKey: ['coin-details', coinId],
+    queryFn: async () => {
+      const response = await fetch(
+        `${COINGECKO_API_BASE}/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false`
+      )
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch coin details')
+      }
+
+      return response.json()
+    },
+    enabled: !!coinId,
+    staleTime: 2 * 60 * 1000, // 2 minutes
+  })
+}
+
+// Trending coins
+export const useTrendingCoins = () => {
+  return useQuery({
+    queryKey: ['trending-coins'],
+    queryFn: async () => {
+      const response = await fetch(`${COINGECKO_API_BASE}/search/trending`)
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch trending coins')
+      }
+
+      return response.json()
+    },
+    refetchInterval: 5 * 60 * 1000, // 5 minutes
+    staleTime: 2 * 60 * 1000,
   })
 }
