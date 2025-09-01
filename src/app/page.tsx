@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
       <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-in fade-in duration-700 slide-in-from-top-4">
           <h1 className="text-5xl font-bold text-white mb-4">
             Crypto Dashboard
           </h1>
@@ -31,8 +31,8 @@ export default function Home() {
         </div>
 
         {/* Feature cards remain the same */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <Card className="bg-slate-800/50 border-slate-700">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-4">
+          <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-700/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-white">Portfolio Management</CardTitle>
               <CardDescription className="text-slate-400">
@@ -49,7 +49,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-700/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-white">Advanced Charts</CardTitle>
               <CardDescription className="text-slate-400">
@@ -66,7 +66,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-700/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="text-white">AI Assistant</CardTitle>
               <CardDescription className="text-slate-400">

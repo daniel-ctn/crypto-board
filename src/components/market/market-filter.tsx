@@ -63,7 +63,7 @@ export function MarketFilters({
     sortBy !== 'market_cap_desc'
 
   return (
-    <Card className="bg-slate-800 border-slate-700">
+    <Card className="bg-slate-800 border-slate-700 animate-in fade-in slide-in-from-top-4">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <CardTitle className="text-white flex items-center">
@@ -87,7 +87,7 @@ export function MarketFilters({
             placeholder="Search cryptocurrencies..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+            className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           />
         </div>
 
@@ -123,9 +123,9 @@ export function MarketFilters({
           <div className="space-y-2">
             <Label className="text-slate-300">Category</Label>
             <Select value={selectedCategory} onValueChange={onCategoryChange}>
-              <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
+            <SelectTrigger className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
               <SelectContent className="bg-slate-800 border-slate-700">
                 <SelectItem value="all" className="text-white">
                   All Categories
@@ -148,9 +148,9 @@ export function MarketFilters({
           <div className="space-y-2">
             <Label className="text-slate-300">Sort By</Label>
             <Select value={sortBy} onValueChange={onSortChange}>
-              <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
+            <SelectTrigger className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
               <SelectContent className="bg-slate-800 border-slate-700">
                 {sortOptions.map((option) => (
                   <SelectItem
@@ -185,7 +185,7 @@ export function MarketFilters({
                 <Input
                   type="number"
                   placeholder="0.00"
-                  className="bg-slate-700 border-slate-600 text-white"
+                  className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 />
               </div>
               <div className="space-y-2">
@@ -193,7 +193,7 @@ export function MarketFilters({
                 <Input
                   type="number"
                   placeholder="100,000"
-                  className="bg-slate-700 border-slate-600 text-white"
+                  className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 />
               </div>
             </div>
@@ -201,7 +201,7 @@ export function MarketFilters({
               <div className="space-y-2">
                 <Label className="text-slate-300">Min Market Cap</Label>
                 <Select>
-                  <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                  <SelectTrigger className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
                     <SelectValue placeholder="Select range" />
                   </SelectTrigger>
                   <SelectContent className="bg-slate-800 border-slate-700">
@@ -226,7 +226,7 @@ export function MarketFilters({
               <div className="space-y-2">
                 <Label className="text-slate-300">Min Volume (24h)</Label>
                 <Select>
-                  <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                  <SelectTrigger className="bg-slate-700 border-slate-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
                     <SelectValue placeholder="Select range" />
                   </SelectTrigger>
                   <SelectContent className="bg-slate-800 border-slate-700">

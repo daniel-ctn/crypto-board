@@ -16,6 +16,9 @@ import { useGlobalMarketStats } from '@/lib/crypto-api'
 export function MarketStats() {
   const { data: stats, isLoading } = useGlobalMarketStats()
 
+  const cardClass =
+    "bg-slate-800 border-slate-700 hover:bg-slate-700/50 transition-colors duration-300"
+
   const formatCurrency = (value: number) => {
     if (value >= 1e12) return `$${(value / 1e12).toFixed(2)}T`
     if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`
@@ -34,9 +37,9 @@ export function MarketStats() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in">
         {[...Array(4)].map((_, i) => (
-          <Card key={i} className="bg-slate-800 border-slate-700">
+          <Card key={i} className={cardClass}>
             <CardContent className="p-6">
               <div className="animate-pulse">
                 <div className="h-4 bg-slate-700 rounded w-24 mb-2"></div>
@@ -53,9 +56,9 @@ export function MarketStats() {
   if (!stats) return null
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4">
       {/* Total Market Cap */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card className={cardClass}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-slate-300">
             Total Market Cap
@@ -86,7 +89,7 @@ export function MarketStats() {
       </Card>
 
       {/* Total Volume */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card className={cardClass}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-slate-300">
             24h Volume
@@ -104,7 +107,7 @@ export function MarketStats() {
       </Card>
 
       {/* BTC Dominance */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card className={cardClass}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-slate-300">
             BTC Dominance
@@ -125,7 +128,7 @@ export function MarketStats() {
       </Card>
 
       {/* ETH Dominance */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card className={cardClass}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-slate-300">
             ETH Dominance
