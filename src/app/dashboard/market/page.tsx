@@ -72,9 +72,9 @@ export default function MarketPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-in fade-in duration-700 slide-in-from-bottom-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-in fade-in slide-in-from-top-2">
         <div>
           <h1 className="text-3xl font-bold text-white">
             Cryptocurrency Market

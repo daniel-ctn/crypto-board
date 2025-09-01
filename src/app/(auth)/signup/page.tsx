@@ -96,7 +96,7 @@ export default function SignupPage() {
 
   return (
     <>
-      <div className="space-y-2 text-center mb-6">
+      <div className="space-y-2 text-center mb-6 animate-in fade-in slide-in-from-top-2">
         <h2 className="text-2xl font-bold text-white">Create Account</h2>
         <p className="text-slate-400">Start managing your crypto portfolio</p>
       </div>
@@ -107,7 +107,7 @@ export default function SignupPage() {
         </Alert>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 animate-in fade-in slide-in-from-bottom-2">
         <div className="space-y-2">
           <Label htmlFor="name" className="text-slate-200">
             Full Name
@@ -118,7 +118,7 @@ export default function SignupPage() {
               id="name"
               type="text"
               placeholder="Enter your full name"
-              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               {...register('name')}
             />
           </div>
@@ -137,7 +137,7 @@ export default function SignupPage() {
               id="email"
               type="email"
               placeholder="Enter your email"
-              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               {...register('email')}
             />
           </div>
@@ -156,7 +156,7 @@ export default function SignupPage() {
               id="password"
               type="password"
               placeholder="Create a password"
-              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               {...register('password')}
             />
           </div>
@@ -175,7 +175,7 @@ export default function SignupPage() {
               id="confirmPassword"
               type="password"
               placeholder="Confirm your password"
-              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               {...register('confirmPassword')}
             />
           </div>
@@ -188,7 +188,7 @@ export default function SignupPage() {
 
         <Button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700"
+          className="w-full bg-blue-600 hover:bg-blue-700 transition-colors"
           disabled={isLoading}
         >
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -94,7 +94,7 @@ export function MarketDataTable({
 
   if (isLoading) {
     return (
-      <Card className="bg-slate-800 border-slate-700">
+      <Card className="bg-slate-800 border-slate-700 animate-in fade-in">
         <CardContent className="p-6">
           <div className="space-y-3">
             {[...Array(10)].map((_, i) => (
@@ -120,7 +120,7 @@ export function MarketDataTable({
   }
 
   return (
-    <Card className="bg-slate-800 border-slate-700">
+    <Card className="bg-slate-800 border-slate-700 animate-in fade-in slide-in-from-bottom-4">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
           <Table>
@@ -182,7 +182,7 @@ export function MarketDataTable({
               {sortedData.map((coin) => (
                 <TableRow
                   key={coin.id}
-                  className="border-slate-700 hover:bg-slate-700/50"
+                  className="border-slate-700 hover:bg-slate-700/50 transition-colors duration-200"
                 >
                   <TableCell className="font-medium text-slate-400">
                     {coin.market_cap_rank}

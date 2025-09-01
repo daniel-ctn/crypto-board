@@ -24,7 +24,7 @@ export interface CryptoCoin {
   atl: number
   atl_change_percentage: number
   atl_date: string
-  roi: any | null
+  roi: unknown | null
   last_updated: string
   sparkline_in_7d?: {
     price: number[]
